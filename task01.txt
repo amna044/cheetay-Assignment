@@ -1,0 +1,33 @@
+string chooseAndSwap(string s, int n)
+{
+	int i, j;
+	int c[MAX];
+	for (i = 0; i < MAX; i++)
+		c[i] = -1;
+	for (i = 0; i < n; i++) {
+		if (c[s[i] - 'a'] == -1)
+			c[s[i] - 'a'] = i;
+	}
+	for (i = 0; i < n; i++) {
+		bool flag = false;
+		for (j = 0; j < s[i] - 'a'; j++) {
+			if (c[j] > c[s[i] - 'a']) {
+				flag = true;
+				break;
+			}
+		}
+		if (flag)
+			break;
+	}
+	if (i < n) {
+		char ch1 = s[i];
+		char ch2 = char(j + 'a');
+		for (i = 0; i < n; i++) {
+			if (s[i] == ch1)
+				s[i] = ch2;
+			else if (s[i] == ch2)
+				s[i] = ch1;
+		}
+	}
+	return s;
+}
